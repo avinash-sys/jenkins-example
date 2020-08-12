@@ -1,31 +1,25 @@
 pipeline {
     agent any
-
+    def mavenHome = tool name:"maven 3.6.3"
     stages {
         stage ('Compile Stage') {
 
             steps {
-                withMaven(maven : 'maven_3_5_0') {
-                    sh 'mvn clean compile'
+                sh "${mavenHome}/bin/mvn clean compile"
                 }
-            }
         }
 
         stage ('Testing Stage') {
 
             steps {
-                withMaven(maven : 'maven_3_5_0') {
-                    sh 'mvn test'
-                }
+                sh "${mavenHome}/bin/mvn test"
             }
         }
 
 
         stage ('Deployment Stage') {
             steps {
-                withMaven(maven : 'maven_3_5_0') {
-                    sh 'mvn deploy'
-                }
+                sh "${mavenHome}/bin/mvn deploy"
             }
         }
     }
