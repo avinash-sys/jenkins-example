@@ -15,12 +15,5 @@ pipeline {
                 sh "${mavenHome}/bin/mvn test"
             }
         }
-
-
-        stage ('Deployment Stage') {
-            steps {
-                sh "${mavenHome}/bin/mvn deploy"
-            }
-        }
     }
 }
